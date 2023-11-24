@@ -1,71 +1,52 @@
 document.addEventListener("DOMContentLoaded", function () {
     const apiKey = "f7cfadf4fcec504badf3285e0227fee9"; // Replace with your OpenWeatherMap API key
     const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
-    const city = "Lagos";
+    const cities = ["London", "Paris", "New York", "Tokyo", "Sydney"];
 
     const weatherInfoElement = document.getElementById("weatherInfo");
-    const weatherInfoElement2 = document.getElementById("weatherInfo2");
-    const weatherInfoElement3 = document.getElementById("weatherInfo3");
 
-    // Fetch weather data
-    // fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
-    // fetch("https://api.openweathermap.org/data/2.5/weather"?q="Lagos"?&appid="f7cfadf4fcec504badf3285e0227fee9")
-    // Error fetching weather data:"
+    // async function fetchCityWeather(city) {
+    //     try {
+    //         const response = await fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
+    //         const data = await response.json()
+    //         return data
+    //     } catch (error) {
+    //         console.log(error)
+    //         weatherInfoElement.innerHTML = error
+    //     }
+    // }
 
-    fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            displayWeatherInfo(data)
-            console.log(data)
-        })
-        .catch(error => {
-            console.log("Error: " + error)
-            weatherInfoElement.innerHTML = error
-        })
-
-
-    // Display weather information
-    function displayWeatherInfo(data) {
-        const weatherDescription = data.weather[0].description;
-        const temperature = data.main.temp;
-        const humidity = data.main.humidity;
-
-        const weatherInfoHTML = `
-            <p><strong>Description:</strong> ${weatherDescription}</p>
-            <p><strong>Temperature:</strong> ${temperature}°C</p>
-            <p><strong>Humidity:</strong> ${humidity}%</p>
-            <p><strong>Humidity:</strong> ${city}</p>
-        `;
-
-        weatherInfoElement.innerHTML = weatherInfoHTML;
-        weatherInfoElement2.innerHTML = weatherInfoHTML;
+    function fetchCityWeather(city) {
+          return fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
+                    .then(res => res.json())
+                    // .then(data => data)
+                    .catch(err => console.log(err))            
     }
 
-    async function fetchData() {
-        try {
-            const response = await fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
-            const data = await response.json()
-            console.log(data)
-            return data
-        } catch (error) {
-            console.log(error)
-        }
+    function fetchWeather() {
+        weatherInfoElement.innerHTML = ""
+        Promise.all(cities.map(city => fetchCityWeather(city)))
+            .then(weatherDataArray => {
+                console.log("weatherDataArray", weatherDataArray)
+                weatherDataArray.forEach(data => {
+                    console.log(data)
+                    const weatherDescription = data.weather[0].description;
+                    const cityName = data.name
+                    const temperature = data.main.temp;
+                    const humidity = data.main.humidity;
+
+                    const weatherInfoHTML = `<div class="my-4">
+                        <p><strong>City name:</strong> ${cityName}</p>
+                        <p><strong>Description:</strong> ${weatherDescription}</p>
+                        <p><strong>Temperature:</strong> ${temperature}°C</p>
+                        <p><strong>Humidity:</strong> ${humidity}%</p>
+                        </div>
+                    `;
+
+                    weatherInfoElement.innerHTML += weatherInfoHTML;
+                })
+            }) 
     }
 
-    async function displayWeatherInfo2() {
-        const data = await fetchData()
-        const weatherDescription = data.weather[0].description;
-        const temperature = data.main.temp;
-        const humidity = data.main.humidity;
-
-        const weatherInfoHTML = `
-            <p><strong>Description:</strong> ${weatherDescription}</p>
-            <p><strong>Temperature:</strong> ${temperature}°C</p>
-            <p><strong>Humidity:</strong> ${humidity}%</p>
-            <p><strong>Humidity:</strong> ${city}</p>
-        `;
-
-        weatherInfoElement3.innerHTML = weatherInfoHTML;
-    }
-    displayWeatherInfo2()
+    fetchWeather()
 });
