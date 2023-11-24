@@ -22,30 +22,25 @@
       
       <!-- Search input -->
       <div class="mb-4 flex justify-center">
-        <input type="text" placeholder="Enter city name" class="border-2 border-gray-300 p-2 rounded-l-md focus:outline-none dark:bg-gray-700">
-        <button class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none">Search</button>
+        <input id="searchInput" type="text" placeholder="Enter city name" class="border-2 border-gray-300 p-2 rounded-l-md focus:outline-none dark:bg-gray-700">
+        <button id="searchButton" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none">Search</button>
       </div>
 
-      <div class="flex justify-center space-x-4">
-        <button id="new-york" class="quick-city-button bg-gray-200 p-2 rounded-md hover:bg-gray-300 focus:outline-none">New York</button>
-        <button id="london" class="quick-city-button bg-gray-200 p-2 rounded-md hover:bg-gray-300 focus:outline-none">London</button>
-        <button id="abuja" class="quick-city-button bg-gray-200 p-2 rounded-md hover:bg-gray-300 focus:outline-none">Abuja</button>
+      <div class="flex justify-center items-center space-x-3">
+        <span class="text-sm">City suggestion</span>
+        <button id="new-york" class="quick-city-button bg-gray-200 p-1 rounded-md hover:bg-gray-300 focus:outline-none">New York</button>
+        <button id="london" class="quick-city-button bg-gray-200 p-1 rounded-md hover:bg-gray-300 focus:outline-none">London</button>
+        <button id="abuja" class="quick-city-button bg-gray-200 p-1 rounded-md hover:bg-gray-300 focus:outline-none">Abuja</button>
       </div>
 
       <div id="weatherQuick"></div>
       
       <!-- Example cities -->
-      <div class="flex justify-center space-x-4">
-        <div class="bg-white p-4 rounded-md shadow-md dark:bg-gray-800">
-          <h2 class="text-lg font-semibold mb-2">City 1</h2>
-          <p>Temperature: 25°C</p>
-          <p>Weather: Sunny</p>
-        </div>
-        <div class="bg-white p-4 rounded-md shadow-md dark:bg-gray-800">
-          <h2 class="text-lg font-semibold mb-2">City 2</h2>
-          <p>Temperature: 20°C</p>
-          <p>Weather: Cloudy</p>
-        </div>
+      <div class="bg-whit e p- 4 roun ded-md shadow -md dark:bg -gray-800 my-4">
+        <h2 id="cityName" class="text-lg font-semibold mb-1">Click city to see weather details</h2>
+        <p id="cityDescription"></p>
+        <p id="cityTemp"></p>
+        <p id="cityHumidity"></p>
       </div>
     </div>
   </div>
