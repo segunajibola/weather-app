@@ -4,11 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
+  <title>Weather App</title>
 </head>
-<body>
+<body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white">
   
-    <div id="weatherInfo"></div>    
+  <!-- Dark mode toggle button -->
+  <div class="fixed top-8 right-4">
+    <button id="darkModeToggle" class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none">Toggle Dark Mode</button>
+  </div>
+  
+  <div class="h-screen flex items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Weather App</h1>
+      <p class="text-lg mb-8">Check the weather of your favorite cities</p>
+      
+      <!-- Search input -->
+      <div class="mb-4 flex justify-center">
+        <input type="text" placeholder="Enter city name" class="border-2 border-gray-300 p-2 rounded-l-md focus:outline-none dark:bg-gray-700">
+        <button class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none">Search</button>
+      </div>
+      
+      <!-- Example cities -->
+      <div class="flex justify-center space-x-4">
+        <div class="bg-white p-4 rounded-md shadow-md dark:bg-gray-800">
+          <h2 class="text-lg font-semibold mb-2">City 1</h2>
+          <p>Temperature: 25°C</p>
+          <p>Weather: Sunny</p>
+        </div>
+        <div class="bg-white p-4 rounded-md shadow-md dark:bg-gray-800">
+          <h2 class="text-lg font-semibold mb-2">City 2</h2>
+          <p>Temperature: 20°C</p>
+          <p>Weather: Cloudy</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <div id="weatherInfo"></div>    
+
+  <script src="script.js"></script>
 </body>
 </html>
