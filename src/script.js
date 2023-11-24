@@ -2,7 +2,6 @@ const apiKey = "f7cfadf4fcec504badf3285e0227fee9";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 const cities = ["London", "Paris", "New York", "Tokyo", "Sydney"];
 const weatherExample = document.getElementById("weatherInfo");
-const weatherQuick = document.getElementById("weatherQuick");
 const quickCityButtons = document.querySelectorAll(".quick-city-button");
 const cityName = document.getElementById("cityName")
 const cityTemp = document.getElementById("cityTemp")
@@ -10,6 +9,7 @@ const cityHumidity = document.getElementById("cityHumidity")
 const cityDescription = document.getElementById("cityDescription")
 const searchButton = document.querySelector("#searchButton");
 const searchInput = document.querySelector("#searchInput");
+const cityCard = document.getElementById("cityCard")
 
 const darkModeToggle = document.getElementById('darkModeToggle');
 darkModeToggle.addEventListener('click', () => {
@@ -66,27 +66,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const displayWeather = async (data) => {
-        // const cityData = await fetchCityWeather(data);
+        cityCard.className = "bg-white p-4 rounded-md shadow-md dark:bg-gray-800 mt-4";
         cityName.textContent = data.name
         cityTemp.textContent = `Temperature: ${data.main.temp}°C`
-        cityHumidity.textContent = `Humidity: ${data.main.humidity}`
+        cityHumidity.textContent = `Humidity: ${data.main.humidity}%`
         cityDescription.textContent = `Description: ${data.weather[0].description}`
-        // const cityCard = document.createElement("div");
-        // cityCard.className = "bg-white p-4 rounded-md shadow-md dark:bg-gray-800";
-        // cityCard.innerHTML = `
-        //   <h2 class="text-lg font-semibold mb-2">${cityData.name}</h2>
-        //   <p>Temperature: ${cityData.main.temp}°C</p>
-        //   <p>Humidity: ${cityData.main.humidity}%</p>
-        //   <p>Weather: ${cityData.weather[0].description}</p>
-        // `;
-    
-        // weatherQuick.innerHTML = "";
-        // weatherQuick.appendChild(cityCard);
       };
 
     searchButton.addEventListener("click", async () => {
         const cityName = searchInput.value;
-        console.log("cityName", cityName)
         if (cityName.trim() !== "") {
             const weatherData = await fetchCityWeather(cityName);
             displayWeather(weatherData);
