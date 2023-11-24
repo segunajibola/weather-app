@@ -4,23 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
+  <link href="marquee.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <title>Weather App</title>
 </head>
-<body>
+<body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white">
+  
+  <!-- Dark mode toggle button -->
+  <div class="fixed top-8 right-4">
+    <button id="darkModeToggle" class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none"><i class="fas fa-sun"></i></button>
+    <a href="https://github.com/segunajibola/weather-app" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none cursor-pointer"><i class="fab fa-github"></i></a>
+  </div>
+  
+  <div class="h-[80vh] flex items-center justify-center bg-blue-200">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Weather App</h1>
+      <p class="text-lg mb-8">Check the weather of your favorite cities</p>
+      
+      <!-- Search input -->
+      <div class="mb-4 flex justify-center">
+        <input id="searchInput" type="text" placeholder="Enter city name" class="border-2 border-gray-300 p-2 rounded-l-md focus:outline-none dark:bg-gray-700">
+        <button id="searchButton" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none">Search</button>
+      </div>
 
-    <div>hello</div>
+      <div class="flex justify-center items-center space-x-3">
+        <span class="text-sm">City suggestion</span>
+        <button id="new-york" class="quick-city-button bg-gray-200 p-1 rounded-md hover:bg-gray-300 focus:outline-none">New York</button>
+        <button id="london" class="quick-city-button bg-gray-200 p-1 rounded-md hover:bg-gray-300 focus:outline-none">London</button>
+        <button id="abuja" class="quick-city-button bg-gray-200 p-1 rounded-md hover:bg-gray-300 focus:outline-none">Abuja</button>
+      </div>
 
-    <div id="weatherInfo"></div>
-    <div id="weatherInfo2"></div>
+      <div id="weatherQuick"></div>
+      
+      <!-- Example cities -->
+      <div id="cityCard">
+        <h2 id="cityName" class="text-lg font-semibold mb-1"></h2>
+        <p id="cityDescription"></p>
+        <p id="cityTemp"></p>
+        <p id="cityHumidity"></p>
+      </div>
+    </div>
+  </div>
 
-    <div>hello 2</div>
+  <div class="marquee" id="weatherInfo"></div>
 
-    <div id="weatherInfo3"></div>
-
-    <div>hello 3</div>
-
-
-    
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
