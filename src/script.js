@@ -1,6 +1,6 @@
 const apiKey = "f7cfadf4fcec504badf3285e0227fee9";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
-const cities = ["London", "Paris", "New York", "Tokyo", "Sydney"];
+const cities = ["London", "Paris", "Abuja", "Lisbon", "Moscow", "Toronto", "Madrid", "New York", "Tokyo", "Sydney"];
 const weatherExample = document.getElementById("weatherInfo");
 const quickCityButtons = document.querySelectorAll(".quick-city-button");
 const cityName = document.getElementById("cityName")
@@ -42,13 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     const temperature = data.main.temp;
                     const humidity = data.main.humidity;
 
-                    const weatherInfoHTML = `<div class="my-4">
-                        <p><strong>City name:</strong> ${cityName}</p>
-                        <p><strong>Description:</strong> ${weatherDescription}</p>
-                        <p><strong>Temperature:</strong> ${temperature}°C</p>
-                        <p><strong>Humidity:</strong> ${humidity}%</p>
-                        </div>
-                    `;
+                    const weatherInfoHTML = `<p>${cityName} : ${temperature}°C</p>`;
 
                     weatherExample.innerHTML += weatherInfoHTML;
                 })

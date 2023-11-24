@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
+  <link href="marquee.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <title>Weather App</title>
 </head>
@@ -15,7 +16,7 @@
     <a href="https://github.com/segunajibola/weather-app" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none cursor-pointer"><i class="fab fa-github"></i></a>
   </div>
   
-  <div class="h-screen flex items-center justify-center bg-blue-200">
+  <div class="h-[80vh] flex items-center justify-center bg-blue-200">
     <div class="text-center">
       <h1 class="text-4xl font-bold mb-4">Weather App</h1>
       <p class="text-lg mb-8">Check the weather of your favorite cities</p>
@@ -45,9 +46,7 @@
     </div>
   </div>
 
-  <div id="weatherInfo"></div>
-
-  <marquee behavior="" direction="left">g</marquee>
+  <div class="marquee" id="weatherInfo"></div>
 
   <script src="script.js"></script>
 </body>
