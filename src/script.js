@@ -1,30 +1,31 @@
+const apiKey = "f7cfadf4fcec504badf3285e0227fee9";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
+const cities = ["London", "Paris", "New York", "Tokyo", "Sydney"];
+const weatherExample = document.getElementById("weatherInfo");
+const weatherQuick = document.getElementById("weatherQuick");
+const quickCityButtons = document.querySelectorAll(".quick-city-button");
+
+const darkModeToggle = document.getElementById('darkModeToggle');
+darkModeToggle.addEventListener('click', () => {
+    const body = document.body
+    body.classList.toggle('dark');
+    const isDarkMode = body.classList.contains('dark');
+    darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+});
+
 document.addEventListener("DOMContentLoaded", function () {
-    const apiKey = "f7cfadf4fcec504badf3285e0227fee9"; // Replace with your OpenWeatherMap API key
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
-    const cities = ["London", "Paris", "New York", "Tokyo", "Sydney"];
-
-    const weatherInfoElement = document.getElementById("weatherInfo");
-
-    // async function fetchCityWeather(city) {
-    //     try {
-    //         const response = await fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
-    //         const data = await response.json()
-    //         return data
-    //     } catch (error) {
-    //         console.log(error)
-    //         weatherInfoElement.innerHTML = error
-    //     }
-    // }
-
-    function fetchCityWeather(city) {
-          return fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
-                    .then(res => res.json())
-                    // .then(data => data)
-                    .catch(err => console.log(err))            
+    async function fetchCityWeather(city) {
+        try {
+            const response = await fetch(`${apiUrl}?q=${city}&appid=${apiKey}`)
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-    function fetchWeather() {
-        weatherInfoElement.innerHTML = ""
+    function fetchWeatherArray() {
+        weatherExample.innerHTML = ""
         Promise.all(cities.map(city => fetchCityWeather(city)))
             .then(weatherDataArray => {
                 console.log("weatherDataArray", weatherDataArray)
@@ -43,15 +44,34 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     `;
 
-                    weatherInfoElement.innerHTML += weatherInfoHTML;
+                    weatherExample.innerHTML += weatherInfoHTML;
                 })
             }) 
     }
 
-    fetchWeather()
-});
+    fetchWeatherArray()
 
-const darkModeToggle = document.getElementById('darkModeToggle');
-darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
+    quickCityButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const cityName = button.innerText;
+          console.log("cityName", cityName)
+          displayWeather(cityName)
+        });
+    });
+
+    const displayWeather = async (data) => {
+        const cityData = await fetchCityWeather(data);
+        const cityCard = document.createElement("div");
+        cityCard.className = "bg-white p-4 rounded-md shadow-md dark:bg-gray-800";
+        cityCard.innerHTML = `
+          <h2 class="text-lg font-semibold mb-2">${cityData.name}</h2>
+          <p>Temperature: ${cityData.main.temp}°C</p>
+          <p>Humidity: ${cityData.main.humidity}%</p>
+          <p>Weather: ${cityData.weather[0].description}</p>
+        `;
+    
+        weatherQuick.innerHTML = ""; // Clear previous data
+        weatherQuick.appendChild(cityCard);
+      };
+
 });
