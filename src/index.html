@@ -11,7 +11,7 @@
 <body class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white">
   
   <!-- Dark mode toggle button -->
-  <div class="fixed top-8 right-4">
+  <div class="fixed top-8 right-6">
     <button id="darkModeToggle" class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none"><i class="fas fa-sun"></i></button>
     <a href="https://github.com/segunajibola/weather-app" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none cursor-pointer"><i class="fab fa-github"></i></a>
   </div>
@@ -23,7 +23,7 @@
       
       <!-- Search input -->
       <div class="mb-4 flex justify-center">
-        <input id="searchInput" type="text" placeholder="Enter city name" class="border-2 border-gray-300 p-2 rounded-l-md focus:outline-none dark:bg-gray-700">
+        <input id="searchInput" type="text" placeholder="Enter city name" class="border-2 border-gray-300 p-2.5 rounded-l-md focus:outline-none dark:bg-gray-700">
         <button id="searchButton" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 focus:outline-none">Search</button>
       </div>
 
@@ -46,7 +46,10 @@
     </div>
   </div>
 
-  <div class="marquee" id="weatherInfo"></div>
+  <div class="flex">
+    <p class="bg-blue-600 p-3 w-[40%] text-[25px] z-10 text-white font-semibold">Today's Weather Report</p>
+    <div class="marquee" id="weatherInfo"></div>
+  </div>
 
   <script src="script.js"></script>
 </body>

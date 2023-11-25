@@ -1,4 +1,4 @@
-const apiKey = "f7cfadf4fcec504badf3285e0227fee9";
+const apiKey = process.env.API_KEY;
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 const cities = ["London", "Paris", "Abuja", "Lisbon", "Moscow", "Toronto", "Madrid", "New York", "Tokyo", "Sydney"];
 const weatherExample = document.getElementById("weatherInfo");
